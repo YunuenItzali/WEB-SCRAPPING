@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado del Web Scraping</title>
+</head>
+<body>
+    <h1>Resultado del Web Scraping</h1>
+
+    <!-- Muestra la imagen -->
+    <img src="{{ resultado.img_url }}" alt="Imagen del producto">
+
+    <p><strong>URL de la imagen:</strong> {{ resultado.img_url }}</p>
+    <p><strong>Información adicional:</strong> {{ resultado.additional_info }}</p>
+    <p><strong>Descripción:</strong> {{ resultado.description }}</p>
+    <p><strong>Información del precio:</strong> {{ resultado.price_info }}</p>
+    <p><strong>Opiniones:</strong> {{ resultado.reviews }}</p>
+
+    <a href="/">Volver a la página principal</a>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine2Ners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        section {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function buscar() {
+            var tienda = document.getElementById('tienda').value;
+            var consulta = document.getElementById('consulta').value.replace(/\s/g, '%20');
+            var url = '';
+
+            switch (tienda) {
+                case 'sears':
+                    url = 'https://www.sears.com.mx/resultados?query=' + consulta;
+                    break;
+                case 'shein':
+                    url = 'https://www.shein.com.mx/pdsearch/' + consulta + '/?ici=s1`EditSearch`' + consulta.replace(/%20/g, ' ') + '`_fb`d0`PageSearchResult';
+                    break;
+                case 'amazon':
+                    url = 'https://www.amazon.com.mx/s?k=' + consulta;
+                    break;
+            }
+
+            window.open(url, '_blank', 'noopener,noreferrer');
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fine2Ners</h1>
+    </header>
+
+    <section>
+        <h2>Búsqueda</h2>
+        <form onsubmit="return buscar()">
+            <div class="form-group">
+                <label for="tienda">Selecciona una tienda:</label>
+                <select id="tienda" name="tienda">
+                    <option value="sears">Sears</option>
+                    <option value="shein">Shein</option>
+                    <option value="amazon">Amazon</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="consulta">Introduce tu búsqueda:</label>
+                <input type="text" id="consulta" name="query" placeholder="Introduce tu búsqueda" required>
+            </div>
+            <button type="submit">Buscar</button>
+        </form>
+        <form action="/escarbar" method="post">
+            <div class="form-group">
+                <label for="url">Introduce la URL:</label>
+                <input type="text" id="url" name="url" placeholder="Introduce la URL" required>
+            </div>
+            <button type="submit">Escarbar</button>
+        </form>              
+    </section>
+</body>
+</html>
